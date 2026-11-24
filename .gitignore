@@ -39,6 +39,10 @@ MANIFEST
 *.data
 *.index
 
+# Keep the trigger-word exercise's reference audio and input samples.
+!Course 5 - Sequence Models/Week 3 - Sequence Models & Attention Mechanism/labs/W3A2/raw_data/**/*.wav
+!Course 5 - Sequence Models/Week 3 - Sequence Models & Attention Mechanism/labs/W3A2/audio_examples/*.wav
+
 
 # Installer logs
 pip-log.txt
