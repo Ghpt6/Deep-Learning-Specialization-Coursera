@@ -5,6 +5,8 @@ on:
     paths:
       - 'environments/**'
       - 'scripts/**'
+      - 'supplements/**'
+      - 'tests/**'
       - 'setup.*'
       - '.python-version'
       - 'Course */**/*.py'
@@ -14,6 +16,8 @@ on:
     paths:
       - 'environments/**'
       - 'scripts/**'
+      - 'supplements/**'
+      - 'tests/**'
       - 'setup.*'
       - '.python-version'
       - 'Course */**/*.py'
@@ -36,6 +40,8 @@ jobs:
           version: '0.11.24'
           enable-cache: true
           cache-dependency-glob: 'environments/**/uv.lock'
+      - name: Test asset download and restoration
+        run: uv run --no-project --python 3.10.20 python -m unittest discover -s tests -v
       - name: Windows one-command setup
         if: runner.os == 'Windows'
         shell: pwsh

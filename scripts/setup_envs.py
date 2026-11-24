@@ -43,6 +43,10 @@ def main():
     if (platform.system(), platform.machine()) not in supported:
         parser.error("Supported: Windows/Linux x86_64 and macOS Intel/Apple Silicon (64-bit).")
     print(f"Reusing {version}; Python {PYTHON}; CPU environments", flush=True)
+    assets = [sys.executable, ROOT / "scripts" / "supplement_assets.py", "--course", *map(str, args.course)]
+    if args.check_only:
+        assets.append("--check-only")
+    run(assets)
     clone_id = hashlib.sha256(os.path.normcase(str(ROOT)).encode()).hexdigest()[:8]
     for course in dict.fromkeys(args.course):
         project = ROOT / "environments" / f"course{course}"

@@ -181,3 +181,51 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Supplemental assets restored from the pinned GitHub Release.
+.DS_Store
+._*
+/Course 1 -  Neural Networks and Deep Learning/Week 2 - Neural Networks Basics/labs/W2A2 - Logistic Regression with a Neural Network Mindset/datasets/
+/Course 1 -  Neural Networks and Deep Learning/Week 4 - Deep Neural Networks/labs/W4A2/datasets/
+/Course 2 - Improving Deep Neural Networks - Hyperparameter Tuning, Regularization/Week 1 - Practical Aspects of Deep Learning/labs/W1A2/datasets/
+/Course 2 - Improving Deep Neural Networks - Hyperparameter Tuning, Regularization/Week 2 - Optimization Algorithms/labs/W2A1/datasets/
+/Course 2 - Improving Deep Neural Networks - Hyperparameter Tuning, Regularization/Week 3 - Hyperparameter Tuning, Batch Normalization, and Programming Frameworks/labs/W3A1/datasets/
+/Course 4 - Convolutional Neural Networks/Week 1 - Foundations of Convolutional Neural Networks/labs/W1A1/datasets/
+/Course 4 - Convolutional Neural Networks/Week 1 - Foundations of Convolutional Neural Networks/labs/W1A2/datasets/
+/Course 4 - Convolutional Neural Networks/Week 2 - Deep Convolutional Models Case Studies/labs/W2A1/datasets/
+/Course 4 - Convolutional Neural Networks/Week 2 - Deep Convolutional Models Case Studies/labs/W2A1/models/
+/Course 4 - Convolutional Neural Networks/Week 2 - Deep Convolutional Models Case Studies/labs/W2A1/resnet50.h5
+/Course 4 - Convolutional Neural Networks/Week 2 - Deep Convolutional Models Case Studies/labs/W2A2/dataset/
+/Course 4 - Convolutional Neural Networks/Week 2 - Deep Convolutional Models Case Studies/labs/W2A2/imagenet_base_model/
+/Course 4 - Convolutional Neural Networks/Week 3 - Object Detection/labs/W3A1/images/
+/Course 4 - Convolutional Neural Networks/Week 3 - Object Detection/labs/W3A1/model_data/
+/Course 4 - Convolutional Neural Networks/Week 3 - Object Detection/labs/W3A2/data/
+/Course 4 - Convolutional Neural Networks/Week 4 - Special Applications (Face Recognition & Neural Style Transfer)/labs/W4A1/datasets/
+/Course 4 - Convolutional Neural Networks/Week 4 - Special Applications (Face Recognition & Neural Style Transfer)/labs/W4A1/images.gz
+/Course 4 - Convolutional Neural Networks/Week 4 - Special Applications (Face Recognition & Neural Style Transfer)/labs/W4A1/keras-facenet-h5/
+/Course 4 - Convolutional Neural Networks/Week 4 - Special Applications (Face Recognition & Neural Style Transfer)/labs/W4A1/keras-facenet-tf23/
+/Course 4 - Convolutional Neural Networks/Week 4 - Special Applications (Face Recognition & Neural Style Transfer)/labs/W4A1/nn4.small2.v7.h5
+/Course 4 - Convolutional Neural Networks/Week 4 - Special Applications (Face Recognition & Neural Style Transfer)/labs/W4A2/pretrained-model/
+/Course 5 - Sequence Models/Week 1 - Recurrent Neural Networks/labs/W1A2/models/
+/Course 5 - Sequence Models/Week 1 - Recurrent Neural Networks/labs/W1A3/data/
+/Course 5 - Sequence Models/Week 1 - Recurrent Neural Networks/labs/W1A3/out/
+/Course 5 - Sequence Models/Week 2 - Natural Language Processing & Word Embeddings/labs/W2A1/data/
+/Course 5 - Sequence Models/Week 2 - Natural Language Processing & Word Embeddings/labs/W2A2/data/
+/Course 5 - Sequence Models/Week 3 - Sequence Models & Attention Mechanism/labs/W3A1/models/
+/Course 5 - Sequence Models/Week 3 - Sequence Models & Attention Mechanism/labs/W3A2/XY_dev/
+/Course 5 - Sequence Models/Week 3 - Sequence Models & Attention Mechanism/labs/W3A2/XY_train/
+/Course 5 - Sequence Models/Week 3 - Sequence Models & Attention Mechanism/labs/W3A2/audio_examples/
+/Course 5 - Sequence Models/Week 3 - Sequence Models & Attention Mechanism/labs/W3A2/chime_output.wav
+/Course 5 - Sequence Models/Week 3 - Sequence Models & Attention Mechanism/labs/W3A2/insert_test.wav
+/Course 5 - Sequence Models/Week 3 - Sequence Models & Attention Mechanism/labs/W3A2/models/
+/Course 5 - Sequence Models/Week 3 - Sequence Models & Attention Mechanism/labs/W3A2/raw_data/
+/Course 5 - Sequence Models/Week 3 - Sequence Models & Attention Mechanism/labs/W3A2/tmp.wav
+/Course 5 - Sequence Models/Week 3 - Sequence Models & Attention Mechanism/labs/W3A2/train.wav
+/Course 5 - Sequence Models/Week 4 - Transformer Network/bonus/Named Entity Recognition/model/
+/Course 5 - Sequence Models/Week 4 - Transformer Network/bonus/Named Entity Recognition/ner.json
+/Course 5 - Sequence Models/Week 4 - Transformer Network/bonus/Named Entity Recognition/tokenizer/
+/Course 5 - Sequence Models/Week 4 - Transformer Network/bonus/Question Answering/data/
+/Course 5 - Sequence Models/Week 4 - Transformer Network/bonus/Question Answering/model/
+/Course 5 - Sequence Models/Week 4 - Transformer Network/bonus/Question Answering/results/
+/Course 5 - Sequence Models/Week 4 - Transformer Network/bonus/Question Answering/tokenizer/
+/Course 5 - Sequence Models/Week 4 - Transformer Network/bonus/Transformer Preprocessing/glove/

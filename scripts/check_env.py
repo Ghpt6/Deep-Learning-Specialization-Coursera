@@ -26,7 +26,8 @@ def course_imports(course):
     folder = next(root.glob(f"Course {course} -*"))
     statements = set()
     for path in folder.rglob("*"):
-        if ".ipynb_checkpoints" in path.parts or path.suffix not in {".py", ".ipynb"}:
+        if (".ipynb_checkpoints" in path.parts or path.name.startswith("._")
+                or path.suffix not in {".py", ".ipynb"}):
             continue
         text = path.read_text(encoding="utf-8-sig")
         sources = [text] if path.suffix == ".py" else [

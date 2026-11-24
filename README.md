@@ -19,9 +19,9 @@ powershell -ExecutionPolicy Bypass -File .\setup.ps1
 bash setup.sh
 ```
 
-安装脚本会复用已安装的 **uv >= 0.11.24**，不会自动升级。如果尚未安装 uv，则通过 Astral 官方安装程序安装 **uv 0.11.24**。随后，脚本会下载由 uv 管理的 **Python 3.10.20**，根据仓库中的 `uv.lock` 文件安装五个独立环境，注册五个 Jupyter 内核，并检查模块导入、代表性计算和内核的实际启动情况。如果下载失败，可重新运行同一命令；uv 会复用下载缓存。
+安装脚本会复用已安装的 **uv >= 0.11.24**，不会自动升级。如果尚未安装 uv，则通过 Astral 官方安装程序安装 **uv 0.11.24**。随后，脚本会准备由 uv 管理的 **Python 3.10.20**，自动检查并补齐课程资料，再根据仓库中的 `uv.lock` 文件安装五个独立环境，注册五个 Jupyter 内核，并检查模块导入、代表性计算和内核的实际启动情况。如果下载失败，可重新运行同一命令；资料下载支持断点续传，uv 也会复用依赖下载缓存。
 
-支持的平台：**Windows x64、Linux x86_64（glibc）、macOS Intel 和 Apple Silicon**。这些环境使用 CPU，不包含 CUDA 或 GPU 驱动的安装配置。安装时需要访问 astral.sh/GitHub、PyPI，以及第 5 门课程所需的 download.pytorch.org。请预留数 GB 可用磁盘空间，并为首次下载 TensorFlow/PyTorch 留出足够时间。
+支持的平台：**Windows x64、Linux x86_64（glibc）、macOS Intel 和 Apple Silicon**。这些环境使用 CPU，不包含 CUDA 或 GPU 驱动的安装配置。安装时需要访问 astral.sh/GitHub、PyPI，以及第 5 门课程所需的 download.pytorch.org。请为课程资料、压缩包缓存和五个独立环境预留足够磁盘空间，并为首次下载 TensorFlow/PyTorch 留出足够时间。
 
 | 课程 | 独立环境 | 主要依赖库 |
 | --- | --- | --- |
@@ -78,7 +78,24 @@ uv run --no-project --python 3.10.20 scripts/setup_envs.py --course 2
 
 依赖版本特意与课程使用的旧版 API 保持兼容：**NumPy 1.23.5**、**TensorFlow 2.10.1**（Apple Silicon 上为 2.10.0）、**Keras 2.10.0** 和 **emoji 0.6.0**。课程使用了 `np.int`/`np.bool`、`Adam(lr=..., decay=...)`、SavedModel 加载，以及 `emoji.emojize(use_aliases=True)`；新版依赖已移除或改变这些接口。实验目录中的旧版 `requirements.txt` 仅作为历史记录保留。请使用对应课程环境，不要在其上叠加安装这份面向 Python 3.7 的旧依赖列表。
 
-安装脚本检查的是环境能否正常运行，不验证练习答案。原始 Notebook 中仍有待完成的作业。大型数据集、预训练权重、tokenizer 和 Coursera 专用评分辅助工具不会由 uv 安装；请按各实验 README 的说明下载补充资料。仓库包含两处小范围兼容性修复：风格迁移实验使用 Pillow 保存图像，以替代已移除的 `scipy.misc.imsave`；命名实体识别（NER）Notebook 的安装单元格使用 `%pip` 安装锁定版本的 seqeval，确保安装到当前选定的内核环境。音频检查覆盖课程中的 WAV/MIDI 处理；可选的 MP3 转换需要在系统中另行安装 FFmpeg。
+安装脚本检查的是环境能否正常运行，不验证练习答案。原始 Notebook 中仍有待完成的作业。大型数据集、预训练权重和 tokenizer 由下面的资料包恢复流程提供；Coursera 专用评分服务不在本地环境中提供。仓库包含两处小范围兼容性修复：风格迁移实验使用 Pillow 保存图像，以替代已移除的 `scipy.misc.imsave`；命名实体识别（NER）Notebook 的安装单元格使用 `%pip` 安装锁定版本的 seqeval，确保安装到当前选定的内核环境。音频检查覆盖课程中的 WAV/MIDI 处理；可选的 MP3 转换需要在系统中另行安装 FFmpeg。
+
+### 自动获取课程资料
+
+全部 **2,758 个补充文件**（包括原先已有的 39 个文件）以一个无损 `tar.gz` 资料包存放在 [supplements-v1 Release](https://github.com/Ghpt6/Deep-Learning-Specialization-Coursera/releases/tag/supplements-v1)，未使用 Git LFS。压缩包约 **3.23 GiB**，按顺序分为 **13 卷**，每卷不超过 **256 MiB**，均低于 Release 的 2 GiB 单附件上限。资料展开后约占 **3.84 GiB**，首次安装还需要为压缩包缓存及课程环境预留磁盘空间。
+
+`setup.ps1` / `setup.sh` 会先根据 `supplements/manifest.json` 校验所选课程的文件大小和 SHA-256。完整文件保持不变；全部完整时不会下载资料包。需要补齐时，脚本优先复用 `downloads/supplements/releases/` 中的缓存，否则从固定版本的公开 Release 下载。分卷和完整压缩流通过校验后，脚本自动按原目录还原缺失或损坏的文件，再继续配置环境。原本存在但校验不一致的文件会先备份到该缓存目录的 `backups/` 中。重复运行会跳过有效资料；`-CheckOnly` / `--check-only` 只检查，不下载或修复。
+
+资料包统一包含全部课程；即使只安装一门课程，首次补齐也需要取得整个压缩包，但只还原所选课程的资料。公开 Release 的下载不要求 GitHub 登录。首次环境安装仍需访问依赖软件源。
+
+如只需要恢复资料，可运行：
+
+```bash
+uv run --no-project --python 3.10.20 scripts/supplement_assets.py
+uv run --no-project --python 3.10.20 scripts/supplement_assets.py --course 4 --check-only
+```
+
+维护者可用 `uv run --no-project python scripts/build_supplement_release.py --tag supplements-v2` 从已校验的本地资料生成新版本；输出位于被 Git 忽略的 `downloads/supplements/release/`。发布对应附件后，再提交更新后的清单。清单固定版本、文件路径、大小和校验值，不会自动追随 `latest`。课程目录中的还原资料与压缩包缓存不应再次提交到 Git；原本已被 Git 跟踪的小文件继续保留。
 
 ## 如何完成练习
 
@@ -88,4 +105,4 @@ uv run --no-project --python 3.10.20 scripts/setup_envs.py --course 2
 
 ## 重要说明
 
-部分实验需要额外的数据文件。由于 Git LFS 的使用及计费问题，仓库作者已将部分较大的文件移至公开可访问的 Google Drive 链接。开始作业前，请仔细阅读各实验的 README.md，并将所有补充文件和文件夹下载到指定目录。
+各实验 README 中保留了原作者的 Google Drive 来源链接。本仓库已汇总这些补充资料，并通过版本固定的 GitHub Release 资料包由 setup 自动获取，无需逐个访问云盘链接。
