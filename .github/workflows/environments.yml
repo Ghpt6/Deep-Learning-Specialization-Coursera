@@ -30,10 +30,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2022, ubuntu-22.04, macos-14]
+        os: [windows-2022, ubuntu-22.04, macos-15]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 40
     steps:
+      - name: Enable long paths for the course directories
+        if: runner.os == 'Windows'
+        run: git config --global core.longpaths true
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
         with:

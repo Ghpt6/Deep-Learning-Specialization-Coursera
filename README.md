@@ -7,6 +7,12 @@
 
 克隆仓库后，在仓库根目录运行以下命令即可，无需预先安装 Python 或 Conda。
 
+Windows 上的课程目录名称较长，克隆时请启用 Git 长路径支持：
+
+```powershell
+git clone -c core.longpaths=true https://github.com/Ghpt6/Deep-Learning-Specialization-Coursera.git
+```
+
 **Windows（PowerShell）：**
 
 ```powershell
