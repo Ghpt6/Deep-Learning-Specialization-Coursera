@@ -1,0 +1,41 @@
+{
+  "folders": [
+    {
+      "name": "Repository",
+      "path": "."
+    },
+    {
+      "name": "Course 1",
+      "path": "Course 1 -  Neural Networks and Deep Learning"
+    },
+    {
+      "name": "Course 2",
+      "path": "Course 2 - Improving Deep Neural Networks - Hyperparameter Tuning, Regularization"
+    },
+    {
+      "name": "Course 3",
+      "path": "Course 3 - Structuring Machine Learning Projects"
+    },
+    {
+      "name": "Course 4",
+      "path": "Course 4 - Convolutional Neural Networks"
+    },
+    {
+      "name": "Course 5",
+      "path": "Course 5 - Sequence Models"
+    }
+  ],
+  "settings": {
+    "python-envs.workspaceSearchPaths": [
+      "./environments/**/.venv"
+    ],
+    "jupyter.notebookFileRoot": "${fileDirname}"
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-python.python",
+      "ms-python.vscode-python-envs",
+      "ms-toolsai.jupyter"
+    ]
+  }
+}

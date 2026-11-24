@@ -1,0 +1,7 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/../environments/course4/.venv",
+  "python-envs.workspaceSearchPaths": [
+    "../environments/course4/.venv"
+  ],
+  "jupyter.notebookFileRoot": "${fileDirname}"
+}

@@ -1,0 +1,2 @@
+# Keep Bash entry points runnable after checkout on Windows as well as Unix.
+*.sh text eol=lf

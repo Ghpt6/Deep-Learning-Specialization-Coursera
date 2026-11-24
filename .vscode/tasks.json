@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "DLS: Install all course environments",
+      "type": "process",
+      "command": "bash",
+      "args": ["${workspaceFolder}/setup.sh"],
+      "windows": {
+        "command": "powershell",
+        "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/setup.ps1"]
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "DLS: Check all course environments",
+      "type": "process",
+      "command": "bash",
+      "args": ["${workspaceFolder}/setup.sh", "--check-only"],
+      "windows": {
+        "command": "powershell",
+        "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/setup.ps1", "-CheckOnly"]
+      },
+      "problemMatcher": []
+    }
+  ]
+}

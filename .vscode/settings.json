@@ -1,0 +1,6 @@
+{
+  "python-envs.workspaceSearchPaths": [
+    "./environments/**/.venv"
+  ],
+  "jupyter.notebookFileRoot": "${fileDirname}"
+}
