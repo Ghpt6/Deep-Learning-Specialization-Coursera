@@ -80,15 +80,13 @@ uv run --no-project --python 3.10.20 scripts/setup_envs.py --course 2
 
 请将依赖清单和更新后的锁定文件一并提交。不要提交 `.venv` 目录或仅适用于本机的 kernelspec 文件。
 
-当环境文件或课程代码发生变更时，GitHub Actions 工作流 `.github/workflows/environments.yml` 会在 Windows、Ubuntu 和 macOS 上执行相同的安装与验证流程。本地端到端验证已在 Windows 上完成；其他平台的依赖已按平台分别解析并锁定，验证由该工作流在 GitHub 上运行时完成。
-
 依赖版本特意与课程使用的旧版 API 保持兼容：**NumPy 1.23.5**、**TensorFlow 2.10.1**（Apple Silicon 上为 2.10.0）、**Keras 2.10.0** 和 **emoji 0.6.0**。课程使用了 `np.int`/`np.bool`、`Adam(lr=..., decay=...)`、SavedModel 加载，以及 `emoji.emojize(use_aliases=True)`；新版依赖已移除或改变这些接口。实验目录中的旧版 `requirements.txt` 仅作为历史记录保留。请使用对应课程环境，不要在其上叠加安装这份面向 Python 3.7 的旧依赖列表。
 
 安装脚本检查的是环境能否正常运行，不验证练习答案。原始 Notebook 中仍有待完成的作业。大型数据集、预训练权重和 tokenizer 由下面的资料包恢复流程提供；Coursera 专用评分服务不在本地环境中提供。仓库包含两处小范围兼容性修复：风格迁移实验使用 Pillow 保存图像，以替代已移除的 `scipy.misc.imsave`；命名实体识别（NER）Notebook 的安装单元格使用 `%pip` 安装锁定版本的 seqeval，确保安装到当前选定的内核环境。音频检查覆盖课程中的 WAV/MIDI 处理；可选的 MP3 转换需要在系统中另行安装 FFmpeg。
 
 ### 自动获取课程资料
 
-全部 **2,758 个补充文件**（包括原先已有的 39 个文件）以一个无损 `tar.gz` 资料包存放在 [supplements-v1 Release](https://github.com/Ghpt6/Deep-Learning-Specialization-Coursera/releases/tag/supplements-v1)，未使用 Git LFS。压缩包约 **3.23 GiB**，按顺序分为 **13 卷**，每卷不超过 **256 MiB**，均低于 Release 的 2 GiB 单附件上限。资料展开后约占 **3.84 GiB**，首次安装还需要为压缩包缓存及课程环境预留磁盘空间。
+全部 **2,758 个补充文件**（包括原先由 Git 跟踪的 39 个文件）统一由 [supplements-v1 Release](https://github.com/Ghpt6/Deep-Learning-Specialization-Coursera/releases/tag/supplements-v1) 中的无损 `tar.gz` 资料包提供，不再由 Git 跟踪，未使用 Git LFS。克隆仓库后，运行 setup 即可自动恢复到对应的实验目录。压缩包约 **3.23 GiB**，按顺序分为 **13 卷**，每卷不超过 **256 MiB**，均低于 Release 的 2 GiB 单附件上限。资料展开后约占 **3.84 GiB**，首次安装还需要为压缩包缓存及课程环境预留磁盘空间。
 
 `setup.ps1` / `setup.sh` 会先根据 `supplements/manifest.json` 校验所选课程的文件大小和 SHA-256。完整文件保持不变；全部完整时不会下载资料包。需要补齐时，脚本优先复用 `downloads/supplements/releases/` 中的缓存，否则从固定版本的公开 Release 下载。分卷和完整压缩流通过校验后，脚本自动按原目录还原缺失或损坏的文件，再继续配置环境。原本存在但校验不一致的文件会先备份到该缓存目录的 `backups/` 中。重复运行会跳过有效资料；`-CheckOnly` / `--check-only` 只检查，不下载或修复。
 
@@ -101,7 +99,7 @@ uv run --no-project --python 3.10.20 scripts/supplement_assets.py
 uv run --no-project --python 3.10.20 scripts/supplement_assets.py --course 4 --check-only
 ```
 
-维护者可用 `uv run --no-project python scripts/build_supplement_release.py --tag supplements-v2` 从已校验的本地资料生成新版本；输出位于被 Git 忽略的 `downloads/supplements/release/`。发布对应附件后，再提交更新后的清单。清单固定版本、文件路径、大小和校验值，不会自动追随 `latest`。课程目录中的还原资料与压缩包缓存不应再次提交到 Git；原本已被 Git 跟踪的小文件继续保留。
+维护者可用 `uv run --no-project python scripts/build_supplement_release.py --tag supplements-v2` 从已校验的本地资料生成新版本；输出位于被 Git 忽略的 `downloads/supplements/release/`。发布对应附件后，再提交更新后的清单。清单固定版本、文件路径、大小和校验值，不会自动追随 `latest`。全部补充资料与压缩包缓存均由 `.gitignore` 排除，恢复到本地后也不应再次提交到 Git。
 
 ## 如何完成练习
 

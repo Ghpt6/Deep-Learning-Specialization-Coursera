@@ -1,7 +1,2 @@
 # Keep Bash entry points runnable after checkout on Windows as well as Unix.
 *.sh text eol=lf
-
-# These original CSV assets require CRLF on every OS to match the release hashes.
-"Course 5 - Sequence Models/Week 2 - Natural Language Processing & Word Embeddings/labs/W2A2/data/emojify_data.csv" text eol=crlf
-"Course 5 - Sequence Models/Week 2 - Natural Language Processing & Word Embeddings/labs/W2A2/data/tesss.csv" text eol=crlf
-"Course 5 - Sequence Models/Week 2 - Natural Language Processing & Word Embeddings/labs/W2A2/data/train_emoji.csv" text eol=crlf
